@@ -242,6 +242,7 @@ def train(cfg, logger, local_rank, world_size, distributed):
     else:
         dataset.reset(cfg.DATASET.MAX_RESOLUTION_LEVEL, 32)
         sample = next(make_dataloader(cfg, logger, dataset, 32, local_rank))
+        # PREPROCESS(-1,1)
         sample = (sample / 127.5 - 1.)
 
     lod2batch.set_epoch(scheduler.start_epoch(), [encoder_optimizer, decoder_optimizer])
@@ -292,6 +293,10 @@ def train(cfg, logger, local_rank, world_size, distributed):
 
             x.requires_grad = True
 
+
+            ## ΤΗΡΕΕ STEP TRAINING 
+
+            
             encoder_optimizer.zero_grad()
             loss_d = model(x, lod2batch.lod, blend_factor, d_train=True, ae=False)
             tracker.update(dict(loss_d=loss_d))
