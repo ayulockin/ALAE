@@ -67,6 +67,7 @@ class LossTracker:
 
     def update(self, d):
         for k, v in d.items():
+            # print('k: {} | v: {}'.format(k, v))
             if k not in self.tracks:
                 self.add(k)
             self.tracks[k] += v
@@ -113,7 +114,7 @@ class LossTracker:
         plt.xlabel('Epoch')
         plt.ylabel('Loss')
 
-        plt.legend(loc=4)
+        # plt.legend(loc=4)
         plt.grid(True)
         plt.tight_layout()
 
