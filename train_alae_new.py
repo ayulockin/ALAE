@@ -40,13 +40,13 @@ train_loader = torch.utils.data.DataLoader(datasets.MNIST('../mnist_data',
                                                           download=True, 
                                                           train=True,      
                                                           batch_size=128, 
-                                                          shuffle=True)
+                                                          shuffle=True))
 
 test_loader = torch.utils.data.DataLoader(datasets.MNIST('../mnist_data', 
                                                           download=True, 
                                                           train=False,
                                                           batch_size=128, 
-                                                          shuffle=True)
+                                                          shuffle=True))
 
 print('[INFO] Length of dataloader: ', len(train_loader), len(test_loader))
 
