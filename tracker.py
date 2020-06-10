@@ -20,6 +20,8 @@ import numpy as np
 import torch
 import os
 
+import wandb
+
 
 class RunningMean:
     def __init__(self):
@@ -103,6 +105,13 @@ class LossTracker:
     def __str__(self):
         result = ""
         for key, value in self.tracks.items():
+            result += "%s: %.7f, " % (key, value.mean())
+        return result[:-2]
+      
+    def wandb_logger(self):
+        result = ""
+        for key, value in self.tracks.items():
+            # wandb.log({key: value.mean()})
             result += "%s: %.7f, " % (key, value.mean())
         return result[:-2]
 
